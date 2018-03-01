@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Create Question</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/create_question.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home_page.html">Cognita</a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+            <ul class="nav navbar-nav">
+                <li><a href="home_page.html">Home</a></li>
+            </ul>
+
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Help</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Momo <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html">View Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Action</li>
+                        <li><a href="#">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container create_question_page">
+    <div class="well">
+        <h3>Question</h3>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label">Question Description:</label>
+                <div class="input_question_description">
+                    <textarea class="form-control" rows="3" id="description"></textarea>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Question Type:</label>
+                <div class="select-type">
+                    <select class="form-control" id="question_type" onchange="getCreateForm(this)">
+                        <option value="MC">Multiple Choice</option>
+                        <option value="BF">Blank Filled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="question_form" id="question_form">
+                    <div id="all_choice"><div class="form-group">
+                        <label>Choice A : </label>
+                        <input class="form-control choice_content">
+                        <input type="checkbox">
+                        <label class="mark_label">Mark as correct</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Choice B : </label>
+                        <input class="form-control choice_content">
+                        <input type="checkbox">
+                        <label class="mark_label">Mark as correct</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Choice C : </label>
+                        <input class="form-control choice_content">
+                        <input type="checkbox">
+                        <label class="mark_label">Mark as correct</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary add_choice_button" type="button" id="add_choice_button" onclick="add_choice()" href="javascript:void(0)">Add another choice</button>
+                <button class="btn btn-secondary delete_choice_button" type="button" id="delete_choice_button" onclick="delete_last_choice()" href="javascript:void(0)">Delete last choice</button>
+
+            </div>
+
+            <div class="add-button-group">
+                <button type="button" class="btn btn-add-question"> Save</button>
+                <a href="create_question.html"><button type="button" class="btn btn-add-question"><i class="glyphicon-plus"></i> Add
+                    another
+                    question
+                </button></a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/create_question.js"></script>
+</html>

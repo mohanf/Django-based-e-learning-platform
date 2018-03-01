@@ -1,0 +1,77 @@
+body {
+    background-color: whitesmoke;
+    margin-top: 70px;
+}
+
+.create_quiz_test_page {
+    min-width: 800px;
+}
+
+.btn-add-question {
+    font-weight: bold;
+    background-color: #d85f7f;
+    border-color: #d85f7f;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+}
+
+.btn-add-question:active,
+.btn-add-question:focus,
+.btn-add-question:hover{
+    font-weight: bold;
+    background-color: #c95674;
+    border-color:#c95674;
+    color: white;
+}
+td:last-child {
+    text-align: right;
+}
+thead {
+  background-color: #d5d5d5;
+}
+
+.quiz_description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-edit-question {
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #d85f7f;
+    border-color: #d85f7f;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+}
+
+.btn-edit-question:active,
+.btn-edit-question:focus,
+.btn-edit-question:hover{
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #c95674;
+    border-color:#c95674;
+    color: white;
+}
+
+.btn-delete-question {
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #d85f7f;
+    border-color: #d85f7f;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+}
+
+.btn-delete-question:active,
+.btn-delete-question:focus,
+.btn-delete-question:hover{
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #c95674;
+    border-color:#c95674;
+    color: white;
+}

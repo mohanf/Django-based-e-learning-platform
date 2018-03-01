@@ -1,0 +1,15 @@
+body {
+    background-color: whitesmoke;
+    margin-top: 70px;
+}
+
+.question-description {
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.correct_answer {
+    margin-top: 10px;
+    color: firebrick;
+}

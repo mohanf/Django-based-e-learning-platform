@@ -1,0 +1,149 @@
+
+
+
+.small-button {
+    font-size: 200%;
+
+}
+
+.lecture-section {
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+}
+
+.content-section {
+    margin-top: 5px;
+}
+
+.lecture-title {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.course-title {
+    font-style: italic;
+}
+
+.two-button {
+    float:right;
+    margin-right:9%;
+}
+
+.content-type {
+    font-weight: bold;
+}
+
+.reading-type {
+    color: #990033;
+}
+
+.video-type {
+    color: steelblue
+}
+
+.edit-button {
+    margin-top: 15px;
+}
+
+.table {
+    float: right;
+    text-align: right;
+}
+
+.form-area {
+    margin-top:5px;
+    margin-bottom: 10px;
+    background-color: #d5d5d5;
+}
+
+.save-button-small {
+    padding-bottom: 5px;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.content-section-homepage {
+    padding-top: 15px;
+}
+
+.base {
+    margin-top: 65px;
+}
+
+.sorting {
+    margin-bottom: 50px;
+}
+
+.filter {
+    font-size: 120%;
+}
+
+.result-content {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: solid 1px gainsboro;
+}
+
+.photo {
+    width:120px;
+}
+
+.course-result {
+    font-size: 200%;
+    font-weight: bold;
+    color: black;
+}
+
+.creator {
+    font-size: 120%;
+    color: grey;
+}
+
+.catagory-result {
+    font-size: 130%;
+    background-color: steelblue;
+    color: white;
+    height: 35px;
+    margin-bottom: 10px;
+    font-family: Arial;
+}
+
+.see-more {
+    float:right;
+}
+
+.see-more-div {
+    margin-top:5px;
+}
+
+.card-catagory {
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.course-form-area {
+    margin-top:5px;
+    margin-bottom: 10px;
+    background-color: #d5d5d5;
+}
+
+.single-form {
+    margin-top: 45px;
+}
+
+.uploading-field {
+    margin-top: 30px;
+}
+
+
+.navbar-default .navbar-brand {
+    text-decoration:none;
+    color:steelblue; !important;
+    font-size:200%;
+    font-weight:bold;
+}

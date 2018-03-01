@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Join Cognita</title>
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="cognito.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                 </button>
+                <a class="navbar-brand" href="#">Cognita</a>
+            </div>
+
+            
+            </div>
+        </div>
+    </nav>
+    <br><br><br><br>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="jumbotron">
+                <h2>Join Cognita</h2>
+                <form method="POST">
+                    <div class="form-group">
+                        <input class="form-control " id="register[first_name]" type="text" name="register[first_name]" placeholder="First name" required >
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control " id="register[last_name]" type="text" name="register[last_name]" placeholder="Last name" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="register[username]" type="text" name="register[username]" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="register[password]" type="password" name="register[password]" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="register[password_confirm]" type="password" name="register[password_confirm]" placeholder="Confirm Password" required onblur="match()">
+                        <p id = "alert"></p>
+                    </div>
+                    <input class="btn btn-lg btn-primary grumble-btn" type="submit" name="register" value="Register">
+                </form>
+                <p>
+                    Already have an account? <a href="login.html">Log in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

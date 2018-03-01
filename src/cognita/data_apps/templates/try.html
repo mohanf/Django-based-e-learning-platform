@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for pair in module_list %}
+{{ pair.1 }}: {{ pair.0.module_type }}
+    index -> {{ pair.0.index }} <-
+    module id: {{ pair.0.id }}
+    {% if pair.0.module_type == 'L' %}
+        lecture id: {{ pair.0.lecture.id }}
+    {% for one in pair.0.lecture.part_set.all %}
+        {{ one.title }}
+        {% if one.part_type == 'R' %}
+        Reading
+        {% else %}
+        Video
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>

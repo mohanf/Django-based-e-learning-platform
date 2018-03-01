@@ -1,0 +1,88 @@
+body {
+    background-color: whitesmoke;
+    margin-top: 70px;
+}
+.create_question_page {
+    min-width: 800px;
+}
+
+.btn-add-question {
+    font-weight: bold;
+    background-color: #d85f7f;
+    border-color: #d85f7f;
+    margin-left: 5px;
+    margin-right: 5px;
+    color:white;
+}
+
+.btn-add-question:active,
+.btn-add-question:focus,
+.btn-add-question:hover{
+    font-weight: bold;
+    background-color: #c95674;
+    border-color:#c95674;
+    color: white;
+}
+
+.control-label {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.select-type {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.input_question_description {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.choice_content {
+    width: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+.question_form {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.mark_label {
+    border-style: solid;
+    font-weight: bold;
+    background-color:steelblue;
+    border-color: steelblue;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+.add_choice_button {
+    font-weight: bold;
+    margin-left: 65px;
+    margin-bottom: 20px;
+}
+
+.delete_choice_button {
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.add_answer_button {
+    font-weight: bold;
+    margin-left: 105px;
+    margin-bottom: 20px;
+}
+
+.delete_answer_button {
+    font-weight: bold;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
