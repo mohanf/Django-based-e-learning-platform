@@ -1,0 +1,33 @@
+<div class="form-group">
+    <label class="control-label">Question Description:</label>
+    <div class="input_question_description">
+        {{ question_form.description }}
+    </div>
+    {% if question_form.description.errors %}
+        <div class="val_error">
+            <p><strong>{{ question_form.description.errors }}</strong></p>
+        </div>
+    {% endif %}
+</div>
+<div class="form-group">
+    <label class="control-label">Question Weight (%):</label>
+    <div class="input_question_weight">
+        {{ question_form.weight }}
+    </div>
+    {% if question_form.weight.errors %}
+        <div class="val_error">
+            <p><strong>{{ question_form.weight.errors }}</strong></p>
+        </div>
+    {% endif %}
+</div>
+<div class="form-group">
+    <label class="control-label">Question Image:&nbsp;&nbsp;</label>
+    <div class="input_question_image">
+        {{ question_form.image }}
+    </div>
+    {% if question_form.image.errors %}
+        <div class="val_error">
+            <p><strong>{{ question_form.image.errors }}</strong></p>
+        </div>
+    {% endif %}
+</div>

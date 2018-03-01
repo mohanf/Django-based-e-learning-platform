@@ -1,0 +1,24 @@
+<div class='row content-section' id='part_{{ part.id }}'>
+    <div class='col-md-1 content-type reading-type'>
+        {% if part.part_type == 'R' %}
+            <p class='reading-type'><span class='ui-icon ui-icon-arrow-4-diag handle'></span><span class='glyphicon glyphicon-list-alt'></p>
+        {% elif part.part_type == 'V' %}
+            <p class='video-type'><span class='ui-icon ui-icon-arrow-4-diag handle'></span><span class='glyphicon glyphicon-play-circle'></p>
+        {% else %}
+            <p class='quiz-type'><span class='ui-icon ui-icon-arrow-4-diag handle'></span><span class='glyphicon glyphicon-question-sign'></span></p>
+        {% endif %}
+    </div>
+    <div class='col-md-9'>
+        <p>{{ part.title }}</p>
+    </div>
+    <div class='col-md-2'>
+        <span>
+            {% if part.part_type == 'Q' %}
+                <a href='{% url 'update_quiz' part.id %}' type='button' class='btn btn-default btn-sm manage'><span class='glyphicon glyphicon-search'></span></a>
+            {% else %}
+                <a href='{% url 'view_part' part.id %}' type='button' class='btn btn-default btn-sm manage'>View/Edit</a>
+            {% endif %}
+            <a class='btn btn-default btn-sm delete-button' name='{{ part.id }}' data-toggle='modal' data-target='#delete-confirm-modal'><span class='glyphicon glyphicon-remove'></span></a>
+        </span>
+    </div>
+</div>

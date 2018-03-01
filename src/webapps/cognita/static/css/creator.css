@@ -1,0 +1,300 @@
+
+
+
+.small-button {
+    font-size: 200%;
+
+}
+
+.lecture-section {
+    margin-bottom: 30px;
+}
+
+.content-section {
+    margin-top: 10px;
+}
+
+.lecture-title {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.course-title {
+    font-style: italic;
+}
+
+.two-button {
+    float:right;
+
+}
+
+.content-type {
+    font-weight: bold;
+}
+
+.reading-type {
+    color: #990033;
+}
+
+.video-type {
+    color: steelblue
+}
+
+.edit-button {
+    margin-top: 15px;
+}
+
+.table {
+    float: right;
+    text-align: right;
+}
+
+.form-area {
+    margin-top:5px;
+    margin-bottom: 10px;
+    background-color: #d5d5d5;
+}
+
+.save-button-small {
+    padding-bottom: 5px;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.content-section-homepage {
+    padding-top: 15px;
+}
+
+.base {
+    margin-top: 65px;
+}
+
+.sorting {
+    margin-bottom: 50px;
+}
+
+.filter {
+    font-size: 120%;
+}
+
+.result-content {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: solid 1px gainsboro;
+}
+
+.photo {
+    width:120px;
+    height:120px;
+}
+
+.course-result {
+    font-size: 200%;
+    font-weight: bold;
+    color: black;
+}
+
+.creator {
+    font-size: 120%;
+    color: grey;
+}
+
+.catagory-result {
+    font-size: 100%;
+    border: dashed grey 1px;
+    color: steelblue;
+    height: 35px;
+    margin-bottom: 10px;
+    font-family: Arial;
+    padding: 6px;
+    border-radius: 20%;
+}
+
+.see-more {
+    float:right;
+}
+
+.see-more-div {
+    margin-top:5px;
+}
+
+.card-catagory {
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.course-form-area {
+    margin-top:5px;
+    margin-bottom: 10px;
+    background-color: #d5d5d5;
+}
+
+.single-form {
+    margin-top: 45px;
+}
+
+.uploading-field {
+    margin-top: 30px;
+}
+
+.biggest {
+    font-size: 200%;
+}
+
+.anchor {
+    padding-top: 65px;
+    margin-top: -65px;
+}
+
+.view-field {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.single-button {
+    margin-right: 10px;
+}
+
+.col-container {
+    padding-bottom: 20px;
+}
+
+.alert-info {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.error_remind {
+    color: red;
+}
+
+.quiz-type {
+    color: #c95674;
+}
+
+.a-with-icon {
+    margin-left: 8px;
+}
+
+.handle {
+    margin-right: 5px;
+}
+
+.reorder-box {
+    border: dashed grey 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.sort-list ul {
+    list-style-type: none;
+    padding-left:0;
+    margin-top: 5px;
+}
+
+.sort-list label {
+    font-size: 120%;
+}
+
+.sort-list ul li label {
+    font-size: 100%;
+    font-weight: 350;
+}
+
+.option-area {
+    margin-top: 30px;
+}
+
+.drag-instruct {
+    color: #5e5e5e;
+    font-weight: 300;
+}
+
+.material-save {
+    margin-left: 2%;
+}
+
+.save-info {
+    margin-left: 8px;
+    color: green;
+    font-weight: bold;
+
+}
+
+.form-input {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 120%;
+}
+
+.view-field-material {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.material-show {
+    border: dashed 1px;
+    border-color: #9e9e9e;
+    padding: 20px;
+}
+
+.tag {
+    color: black;
+    border-radius: 10px;
+    background-color: #c9d7e8;
+    padding: 5px 10px 5px 10px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.tag-form {
+    display: inline;
+}
+
+#tag-add-area {
+    margin-left: 10px;
+    display: none;
+}
+
+.display-add-tag {
+    display: inline;
+}
+
+.tag-form button {
+    margin-left: 10px;
+}
+
+.delete-tag {
+    display: None;
+    color: white;
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.tag:hover .delete-tag {
+    display: inline;
+}
+
+@media screen and (max-width: 1000px) {
+    .side-to-hide{
+        display: none;
+    }
+}
+
+.tag-instruction {
+    color: #5e5e5e;
+    font-size: 80%;
+    display: inline;
+}
+
+.add-content-instruction {
+    color: #5e5e5e;
+    font-size: 50%;
+    display: inline;
+    font-weight: 500;
+}

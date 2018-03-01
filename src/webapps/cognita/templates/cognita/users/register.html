@@ -1,0 +1,39 @@
+{% extends 'cognita/users/user_base.html' %}
+{% block title %}
+    Cognita Register
+{% endblock %}
+
+{% block body %}
+    <div class='container'>
+        <div class='col-sm-6 col-sm-offset-3'>
+            <div class='jumbotron'>
+                <h2>Create a Cognita Account</h2>
+                <form method='POST' action='{% url 'register' %}'>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class='form-group'>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class='alert alert-danger alert-cognita'>
+                                    {% for error in field.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <input class='btn btn-lg btn-primary' type='submit' name='login' value='Register'>
+                    {% if login_failure %}
+                        <div class='alert alert-danger alert-cognita'>
+                            {{ login_failure }}
+                        </div>
+                    {% endif %}
+                </form>
+                <br>
+                <p>
+                    Already have an account? <a href='{% url 'login' %}'>Log in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    Take
+    {% if request.resolver_match.url_name == 'take_quiz' %}Quiz{% endif %}
+    {% if request.resolver_match.url_name == 'take_test' %}Test{% endif %}
+{% endblock %}
+{% block head %}
+    {% load static %}
+    <link href="{% static 'css/take_quiz_test.css' %}" rel="stylesheet">
+    <script src="{% static 'js/take_quiz_test.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <nav class="col-sm-3 question_list_side">
+                <ul class="nav nav-pills nav-stacked affix">
+                    {% for li in question_list %}
+                        <li class="question_list"><a id="questionlist{{ li }}" href="#question_{{ li }}"
+                                                     >Question
+                            {{ li }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <form method="post" class="col-sm-9 question_side">
+                {% csrf_token %}
+                <div class="question_panel">
+                    <div class="question_panel_title">
+                        <h2>{{ title }}{% if request.resolver_match.url_name == 'take_quiz' %}Quiz{% endif %}
+                            {% if request.resolver_match.url_name == 'take_test' %}Test{% endif %}</h2>
+                    </div>
+                    {% for question in questions %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 id="question_{{ question.question.index }}" class="question_title panel-title">
+                                    Question {{ question.question.index }}</h3>
+                            </div>
+                            <div class="panel-body">
+                                {% if question.question.image %}
+                                    <div class="question_image">
+                                        <img src="{% url 'get_question_image' question.question.id %}">
+                                    </div>
+                                {% endif %}
+                                <div class="question-description">
+                                    {{ question.question.description }}
+                                </div>
+                                <div class="question_input">
+                                    {% if question.type == 'MC' %}
+                                        {% for letter, choice in question.choices.items %}
+                                            <div class="question_option">
+                                                <input type="{% if question.input_type == 'radio' %}radio{% else %}checkbox{% endif %}"
+                                                       name="question_{{ question.question.id }}_choice"
+                                                       value="{{ choice.id }}" {% if question.saved_answer and choice.id|stringformat:"i" in question.saved_answer %}checked{% endif %} >&nbsp;{{ letter }}.&nbsp;{{ choice.content }}
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="question_blank">
+                                            <input type="text" class="form-control"
+                                                   name="question_{{ question.question.id }}_blank" maxlength="255"
+                                            {% if question.saved_answer %}value="{{ question.saved_answer }}{% endif %}">
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <div class="question_submit_save">
+                    <span class="saved">Saved!</span>
+                    <button class="btn btn-primary btn-save" id="btn-save" name="save" value="save" type="submit">Save</button>
+                    <button class="btn btn-danger btn-submit" id="btn-submit" name="submit" value="submit"type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+<form method='post' id="noteform{{ note.lecture.id }}">
+    <textarea id="notearea_{{ note.lecture.id }}" name="notearea{{ note.lecture.id }}" form="noteform{{ note.lecture.id }}">{{ note.note }} </textarea>
+    <input id="lecture_id_{{ note.lecture.id }}" type="hidden" value="{{ note.lecture.id }}">
+
+    <input id='savenote_{{ note.lecture.id }}' class="btn btn-default save-note" type="submit" value="Save">
+    <span class="note-save-info" id="save_info_{{ note.lecture.id }}"></span>
+</form>

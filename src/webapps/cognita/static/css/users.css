@@ -1,0 +1,47 @@
+.jumbotron{
+    border-style: solid;
+    border-color: #dddddd;
+    border-width: thin;
+}
+.jumbotron .alert-cognita {
+    font-size: 15px;
+    padding: 5px 5px 5px 15px;
+}
+.profile_course {
+    padding: 15px;
+}
+.course-img {
+    height: 200px;
+    width: 100%;
+}
+.side-category {
+
+}
+.content-section-homepage {
+    padding-top: 15px;
+}
+.course-intro {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height:1.3em;
+    min-height:3.9em;
+}
+.pos-anchor {
+    padding-top: 50px;
+    margin-top: -70px;
+    visibility: hidden;
+}
+.separate {
+    height: 30px;
+}
+
+.course-title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height:1.3em;
+    min-height:2.6em;
+}

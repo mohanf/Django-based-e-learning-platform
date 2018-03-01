@@ -1,0 +1,107 @@
+{% if not taking %}
+    {% for module in modules %}
+        <li class='list-group-item'>
+                Module {{ module.index }}. {{ module.title }}
+        </li>
+    {% endfor %}
+{% else %}
+    {% for module in modules %}
+        {% if module.module_type == 'L' %}
+            <li class='list-group-item'>
+                <a data-toggle='collapse' data-target='#module{{ module.index }}' id="expand-link{{ module.index }}">Module {{ module.index }}. {{ module.title }}</a>
+                <span class='caret'></span>
+                <span>Expected hours: {{ module.lecture.expected_hour }}</span>
+                <div class='right btn-group' role='group' aria-label='Controls'>
+					    <button type='button' class='btn btn-success toggle-note'
+                                id="toggle-note-button{{ module.index }}"
+                                onclick="toggle_note({{ module.index }})">Show Notes</button>
+                    </div>
+            </li>
+            <div class='row-main row collapse' id='module{{ module.index }}'>
+                <div class='col-sm-12 part-content' id="content{{ module.index }}">
+
+                    <ol class='part-list'>
+                        <h4>Learning goal:</h4>
+                        <div class='description'>{{ module.description }}</div>
+                    </ol>
+                    <ol class='part-list'>
+                        {% for part in module.lecture.part_set.all|dictsort:'index' %}
+                            <li class='list-group-item part-list-height'>
+                                {% if part.part_type == 'Q' %}
+                                    <span class='glyphicon glyphicon-question-sign quiz-ic'></span>
+                                    <span><a href='{% url 'auto_grade_quiz' part.quiz.id %}'>Quiz: {{ part.title }}</a></span>
+                                {% else %}
+                                    <span><a data-toggle='collapse' data-target='#module{{ module.index }}part{{ part.index }}'>
+                                        {% if part.part_type == 'R' %}
+                                            <span
+                                                        class='glyphicon glyphicon-list-alt read-ic'></span>
+                                            Reading: {{ part.title }}
+                                        {% elif part.part_type == 'V' %}
+                                            <span
+                                                        class='glyphicon glyphicon-play-circle video-ic'></span>
+                                            Video: {{ part.title }}
+                                        {% endif %}
+                                    </a></span>
+                                    <span class='caret'></span>
+                                {% endif %}
+                                <span class='inline-form' id='progress_form_{{ part.id }}'>
+                                    {% for pair in  progress_list%}
+                                        {% if pair.0 == part.id%}
+                                            {% if pair.1 == 0 %}
+                                                {% if part.part_type == 'Q' %}
+                                                    <label class="btn btn-xs btn-success disabled quiz-prog-mark">Mark as Complete</label>
+                                                {% else %}
+                                                    <form>
+                                                        <input id='progress_part_{{ part.id }}' type='hidden' name='part' value='{{ part.id }}'>
+                                                        <input id='progress_button_{{ part.id }}' class='btn btn-xs btn-success mark-progress' type='submit' value='Mark as Complete'>
+                                                    </form>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if part.part_type == 'Q' %}
+                                                    <label class="btn btn-xs btn-default disabled quiz-prog-mark">Completed</label>
+                                                {% else %}
+                                                    <form>
+                                                        <input id='progress_part_{{ part.id }}' type='hidden' name='part' value='{{ part.id }}'>
+                                                        <input id='progress_button_{{ part.id }}' class='btn btn-xs btn-default mark-progress' type='submit' value='Completed'>
+                                                    </form>
+                                                {% endif %}
+
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </span>
+                                <span class='list-text'>
+                                    {{ part.expected_hour }} hours
+                                </span>
+                            </li>
+                            <div class='collapse' id='module{{ module.index }}part{{ part.index }}'>
+                                {% if part.part_type == 'R' %}
+                                    <div class='description'>{{ part.description }}</div>
+                                    {% if part.reading.reading_type == 'P' %}
+                                        <object  width=100% height='550px' data='{% url 'view_course_reading' part.reading.id %}'></object>
+                                    {% elif part.reading.reading_type == 'M'%}
+                                        <div class="reading-material">
+                                            {{ part.reading.material|safe }}
+                                        </div>
+                                    {% endif %}
+                                {% elif part.part_type == 'V' %}
+                                    <div class='description'>{{ part.description }}</div>
+                                    <iframe width=100% height='500px'
+                                            src={{ part.video.link }} frameborder='0' allowfullscreen></iframe>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div class='note' id='note_{{ module.lecture.id }}'>
+
+                </div>
+            </div>
+        {% else %}
+            <li class='list-group-item'>
+                <a href='{% url 'auto_grade_test' module.test.id%}'>Module {{ module.index }}. {{ module.title }}</a>
+                <span>Expected hours: {{ module.test.expected_hour }}</span>
+            </li>
+        {% endif %}
+    {% endfor %}
+{% endif %}

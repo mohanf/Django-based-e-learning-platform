@@ -1,0 +1,43 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    {{ instructor.first_name }}
+{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link href='{% static 'css/users.css' %}' rel='stylesheet'>
+{% endblock %}
+
+{% block body %}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-3'>
+                <h3>{{ instructor.first_name }} {{ instructor.last_name }}'s Courses</h3>
+                <ul class='list-group'>
+                    {% for course in courses %}
+                        <li class='list-group-item'>
+                            <b><a href='/course/{{ course.id }}'>{{ course.title }}</a></b>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class='col-sm-9'>
+                <h3>Course Details</h3>
+                <ul class='list-group'>
+                    {% for course in courses %}
+                        <li class='list-group-item'>
+                            <h3><a href='/course/{{ course.id }}'>{{ course.title }}</a></h3>
+                            <b>Category: </b>
+                            <p>{{ course.get_category_display }}</p>
+                            <b>Instructor Introduction</b>
+                            <p>{{ course.creator_info }}</p>
+                            <b>Course Introduction</b>
+                            <p>{{ course.description }}</p>
+                            <b>Number of students: </b>{{ course.students.count}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

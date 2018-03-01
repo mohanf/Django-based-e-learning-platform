@@ -1,0 +1,67 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    Create Question
+{% endblock %}
+{% block head %}
+    {% load static %}
+    <link href="{% static 'css/create_update_question.css' %}" rel="stylesheet">
+    <script src="{% static 'js/create_question.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div class="container create_question_page">
+        <div class="well">
+            <h3>Create Question</h3>
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if request.resolver_match.url_name == 'create_question_test' %}
+                    <div class="form-group"><label class="control-label">Course: {{ course }}</label>
+                        <br>
+                        <label class="control-label">Test: {{ test }}</label></div>
+                {% endif %}
+                {% if request.resolver_match.url_name == 'create_quetion_quiz' %}
+                    <div class="form-group"><label class="control-label">Course: {{ course }}</label>
+                        <label class="control-label">Lecture: {{ lecture }}</label></div>
+                {% endif %}
+                {% include 'cognita/xinyangg/question_info_form.html' %}
+                <div class="form-group">
+                    <label class="control-label">Question Type:</label>
+                    <div class="select-type">
+                        <select class="form-control" id="question_type" name="question_type">
+                            <option value="MC" {% if choice_forms %}selected="selected"{% endif %}>Multiple Choice
+                            </option>
+                            <option value="BF" {% if answer_forms %}selected="selected"{% endif %}>Blank Filled</option>
+                        </select>
+                    </div>
+                </div>
+                {% include 'cognita/xinyangg/question_choice_answer_form.html' %}
+                <div class="add-button-group">
+                    <button type="submit" name="save" value="save" class="btn btn-add-question"> Save</button>
+                    {% if request.resolver_match.url_name == 'create_question_test' %}
+                        <a href="{% url 'create_question_test' request.resolver_match.kwargs.test_id %}">
+                    {% endif %}
+                    {% if request.resolver_match.url_name == 'create_question_quiz' %}
+                        <a href="{% url 'create_question_quiz' request.resolver_match.kwargs.quiz_id %}">
+                    {% endif %}
+                    <button type="submit" name="save_and_jump" value="save_and_jump" class="btn btn-add-question">Save
+                        and Add
+                        another
+                        question
+                    </button>
+                    </a>
+                    {% if request.resolver_match.url_name == 'create_question_test' %}
+                        <a href="{% url 'update_test' request.resolver_match.kwargs.test_id %}">
+                            <button type="button" class="btn btn-add-question">Back to test
+                            </button>
+                        </a>
+                    {% endif %}
+                    {% if request.resolver_match.url_name == 'create_question_quiz' %}
+                        <a href="{% url 'update_quiz' request.resolver_match.kwargs.quiz_id %}">
+                            <button type="button" class="btn btn-add-question">Back to quiz
+                            </button>
+                        </a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "cognita/base.html" %}
+
+{% load static %}
+
+{% block title %}
+View and modify course info
+{% endblock title %}
+
+{% block body %}
+    <div class="container base">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>
+            Basic information of your course
+            <span class="two-button">
+                <a class="btn btn-primary" href="{% url 'creating_course' course.id %}">back to course</a>
+            </span>
+        </h2>
+        <form enctype="multipart/form-data" action="{% url 'modify_course' course.id %}" method="post">
+            {% csrf_token %}
+        <div class="error_remind">
+            {% for error in form.non_field_errors %}
+            {{ error }}
+            {% endfor %}
+        </div>
+
+
+            {% for field in form %}
+                <div class="form-group">
+                {{ field.label_tag }}<br>
+                {{ field }}
+                </div>
+
+                {% for error in field.errors %}
+                    <p class="error_remind">{{ error }}</p>
+                    {% endfor %}
+
+            {% endfor %}
+
+
+
+
+            <br>
+            <div class="row save-button-small">
+
+
+
+                <input type="submit" class="btn btn-default" value="Save">
+
+            </div>
+        </form>
+
+
+
+    </div>
+    </div>
+{% endblock body %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/creator.css' %}">
+
+
+{% endblock head %}

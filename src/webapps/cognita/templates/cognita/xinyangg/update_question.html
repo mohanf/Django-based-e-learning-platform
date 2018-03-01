@@ -1,0 +1,139 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    Update Question
+{% endblock %}
+{% block head %}
+    {% load static %}
+    <link href="{% static 'css/create_update_question.css' %}" rel="stylesheet">
+    <script src="{% static 'js/update_question.js' %}"></script>
+    <script src="{% static 'js/bootstrap-confirmation.min.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div class="container create_question_page">
+        <div class="well">
+            <h3>Update Question</h3>
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if course %}
+                    <div class="form-group"><label class="control-label">Course: {{ course }}</label>
+                {% endif %}
+                {% if lecture %}
+                    <br>
+                    <label class="control-label">Quiz: {{ quiz }}</label>
+                {% else %}
+                    <br>
+                    <label class="control-label">Test: {{ test }}</label>
+                {% endif %}
+                </div>
+                {% include 'cognita/xinyangg/question_info_form.html' %}
+                <div class="form-group">
+                    <label class="control-label">Question Type:</label>
+                    {% if choices %}Multiple Choice{% endif %}
+                    {% if answers %}Blank Filled{% endif %}
+                </div>
+
+                {% if choices %}
+                     <div class="form-group">
+                    <label class="control-label">Current Choices:</label>
+                </div>
+
+                {% if error_message %}
+                    <div class="error_message">
+                        <p><strong>{{ error_message }}</strong></p>
+                        <br>
+                    </div>
+                {% endif %}
+                    <table id="question_form" class="table current_choice_list">
+                        <col span="1" class="wide1">
+                        <col span="1" class="wide2">
+                        <col span="1" class="wide3">
+                        <col span="1" class="wide4">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Correct</th>
+                            <th>Choices</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="all_choice">
+                        {% for letter, choice in choices.items %}
+                            <tr id="{{ choice.id }}" class="choice">
+                                <th scope="row">{{ letter }}</th>
+                                <td>{% if letter in all_correct_choice %}<i class="glyphicon glyphicon-ok"></i>
+                                {% else %}<i class="glyphicon glyphicon-remove"></i>{% endif %}</td>
+                                <td>{{ choice.content }}</td>
+
+                                <td>
+                                    <a><button class="btn btn-primary btn-choice-answer btn-edit-choice" type="button">Edit</button></a>
+                                    <button class="btn btn-success btn-choice-answer btn-delete-choice" data-toggle="confirmation" type="button">Delete</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary add_choice_button" type="button"
+                            id="add_choice_button"
+                            onclick="add_choice()" href="javascript:void(0)">Add another choice
+                    </button>
+                {% endif %}
+                {% if answers %}
+                     <div class="form-group">
+                    <label class="control-label">Current Correct Answer:</label>
+                </div>
+
+                {% if error_message %}
+                    <div class="error_message">
+                        <p><strong>{{ error_message }}</strong></p>
+                        <br>
+                    </div>
+                {% endif %}
+                    <table id="question_form" class="table answer_table">
+                        <col span="1" class="answer_wide1">
+                        <col span="1" class="answer_wide2">
+                        <col span="1" class="wide4">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Correct Answer</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="correct_answer">
+                            {% for index, answer in answers.items %}
+                                <tr class="answer" id="{{ answer.id }}">
+                                <th scope="row">{{ index }}</th>
+                                <td>{{ answer.answer }}</td>
+                                    <td>
+                                    <button class="btn btn-primary btn-choice-answer btn-edit-answer" type="button">Edit</button>
+                                    <button class="btn btn-success btn-choice-answer btn-delete-answer" data-toggle="confirmation" type="button">Delete</button>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <button type="button" id="id_answer" href="javascript:void(0)"
+                            onclick="add_correct_answer()" class="btn btn-primary add_answer_button">Add another
+                        correct answer
+                    </button>
+                {% endif %}
+
+                <div class="add-button-group">
+                    <button name="save" value="save" class="btn btn-add-question"> Save</button>
+
+                    {% if lecture %}
+                        <a href="{% url 'update_quiz' quiz.id %}">
+                            <button type="button" class="btn btn-add-question">Back to quiz
+                            </button>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'update_test' test.id %}">
+                            <button type="button" class="btn btn-add-question">Back to test
+                            </button>
+                        </a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

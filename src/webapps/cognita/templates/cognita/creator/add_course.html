@@ -1,0 +1,55 @@
+{% extends "cognita/base.html" %}
+{% load static %}
+{% block title %}
+Add Course
+{% endblock title %}
+
+{% block body %}
+    <div class="container base">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>
+            Adding a New Course
+        </h2>
+        <form enctype="multipart/form-data" action="{% url 'add_course' %}" class="single-form" method="post">
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+                <p class="error_remind">{{ error }}</p>
+            {% endfor %}
+
+
+            {% for field in form %}
+                <div class="form-group">
+                {{ field.label_tag }}<br>
+                {{ field }}
+                </div>
+                {% for error in field.errors %}
+                    <p class="error_remind">{{ error }}</p>
+                    {% endfor %}
+            {% endfor %}
+
+
+
+
+            <br>
+            <div class="row save-button-small">
+
+
+
+                <input type="submit" class="btn btn-default" value="Save">
+
+            </div>
+
+
+        </form>
+    </div>
+
+
+</div>
+{% endblock body %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/creator.css' %}">
+
+
+
+{% endblock head %}

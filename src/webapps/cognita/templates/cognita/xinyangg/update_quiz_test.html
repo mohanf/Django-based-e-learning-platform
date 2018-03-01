@@ -1,0 +1,111 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    Update
+    {% if request.resolver_match.url_name == 'update_quiz' %}Quiz{% endif %}
+    {% if request.resolver_match.url_name == 'update_test' %}Test{% endif %}
+{% endblock %}
+{% block head %}
+    {% load static %}
+    <link href="{% static 'css/update_quiz_test.css' %}" rel="stylesheet">
+    <script src="{% static 'js/update_quiz_test.js' %}"></script>
+    <script src='{% static 'js/jquery-ui.js' %}'></script>
+    <script src="{% static 'js/bootstrap-confirmation.min.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="well create_quiz_test_page">
+            <form>
+                {% csrf_token %}
+                <div class="form-group">
+
+                    <h3 id="title"><span id="title_shown">{{ form.title.value |title }}</span><span id="quiz_span">
+                {% if request.resolver_match.url_name == 'update_quiz' %}Quiz
+                {% endif %}
+                        {% if request.resolver_match.url_name == 'update_test' %}Test
+                        {% endif %}
+            </span>
+                        <button id="edit_btn" class="btn btn-primary btn-edit" type="button">Edit</button>
+                    </h3>
+                </div>
+                <div class="form-group" id="course_lecture">
+                    {% if request.resolver_match.url_name == 'update_quiz' %}
+                        <h5 class="test_label">Course: <span>{{ course }}</span></h5>
+                        <h5 class="test_label">Lecture: <span>{{ lecture }}</span></h5>
+                    {% endif %}
+                    {% if request.resolver_match.url_name == 'update_test' %}
+                        <h5 class="test_label">Course: <span>{{ course }}</span></h5>
+                    {% endif %}
+                </div>
+
+                <div class="form-group" id="description">
+                    <h5 class="test_label">Description:</h5>
+                    <div id="description_shown">
+                        {{ form.description.value }}
+                    </div>
+                </div>
+
+                <div class="form-group" id="full_score">
+                    <h5 class="full-score-label test_label">Full Score: </h5>
+                    <span id="full_score_shown" class="full_score_shown">{{ form.full_score.value }}</span>
+
+                </div>
+
+                <div class="form-group" id="expected_hour">
+                    <h5 class="expected-hour-label test_label">Expected Hours: </h5>
+                    <span id="expected_hour_shown" class="expected_hour_shown">{{ form.expected_hour.value }}</span>
+                </div>
+            </form>
+            <div id="question_list">
+                <h5 class="test_label">Questions:</h5>
+                <table id="question_list_table" class="table current_question_list">
+                    <col span="1" class="wide1">
+                    <col span="1" class="wide2">
+                    <col span="1" class="wide3">
+                    <col span="1" class="wide4">
+                    <col span="1" class="wide5">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Weight(%)</th>
+                        <th>Question</th>
+                        <th><button id="reorder-questions" class="btn-small btn-warning btn-reorder">Reorder Questions</button></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for question in questions %}
+                        <tr id="{{ question.id }}">
+                            <th scope="row">{{ question.index }}</th>
+                            <td>{% if question.type == 'MC' %}Multiple Choice{% else %}Blank Filled{% endif %}</td>
+                            <td>{{ question.weight }}</td>
+                            <td>{{ question.description }}</td>
+                            <td>
+                                <a href="{% url 'update_question' question.id %}">
+                                <button class="btn btn-primary btn-edit-question" type="button">Edit</button>
+                                </a>
+                                <button class="btn btn-success btn-delete-question" data-toggle="confirmation" type="button">Delete</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% if request.resolver_match.url_name == 'update_test' %}
+                    <a href="{% url 'create_question_test' request.resolver_match.kwargs.test_id %}">
+                    <button class="btn btn-add-question"><i class="glyphicon-plus"></i> Add new question
+                    </button>
+                {% endif %}
+                {% if request.resolver_match.url_name == 'update_quiz' %}
+                    <a href="{% url 'create_question_quiz' request.resolver_match.kwargs.quiz_id %}">
+                    <button class="btn btn-add-question"><i class="glyphicon-plus"></i> Add new question
+                    </button>
+                {% endif %}
+                </a>
+                <a href="{% url 'creating_course' course.id %}">
+                    <button class="btn btn-add-question"> Back to Course
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

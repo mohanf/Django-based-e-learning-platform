@@ -1,0 +1,20 @@
+.btn-save-quiz-test {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.val_error {
+    color : #d43f3a;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: -5px;
+}
+
+.val_error ul,
+.val_error li {
+    list-style: none;
+    text-align: left;
+    padding-left: 5px;
+}

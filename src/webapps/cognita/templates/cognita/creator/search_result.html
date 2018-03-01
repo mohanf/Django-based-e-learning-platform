@@ -1,0 +1,58 @@
+{% extends "cognita/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Creating Course...
+{% endblock title %}
+
+{% block body %}
+    <div class="container base">
+        <div class="col-md-3">
+            <form method="get" id="search_option_form">
+                <div class="sort-list">
+                {% for field in form1 %}
+                    <div class="option-area">
+                {{ field.label_tag }}
+                {{ field }}
+                    </div>
+                {% endfor %}
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-9">
+        <div class="row" id="result_area">
+            {% for course in course_list %}
+            <div class="result-content">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="{% url 'course_page' course.id %}">
+                            {% if course.course_image %}
+                            <img src="{% url 'course_img' course.id %}" class="media-object photo" alt="Course Photo">
+                            {% else %}
+                            <img src='{% static 'images/course_default.png' %}' class="media-object photo">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="media-body post-text">
+                        <a href="{% url 'course_page' course.id %}"><p class="course-result">{{ course.title }}</p></a>
+                        <a href="{% url 'instructor' request.user.id %}"><p class="creator">Creator: {{ course.creator }}</p></a>
+                        <div>
+                            <span class="catagory-result">
+                            {{ course.category }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/creator.css' %}">
+    <script src="{% static 'js/creator/search.js' %}"></script>
+{% endblock head %}

@@ -1,0 +1,1 @@
+{"stat": "success", "html": "{{part_html|safe}}", "id": "{{panel_id}}"}

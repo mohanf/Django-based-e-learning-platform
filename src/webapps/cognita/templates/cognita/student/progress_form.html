@@ -1,0 +1,10 @@
+<form  method='post'>
+    {% for field in progress_form %}
+        {{ field }}
+    {% endfor %}
+    {% if progress_status == 'completed' %}
+        <input id='' class="btn btn-default" type="submit" value="Completed">
+    {% else %}
+        <input id='' class="btn btn-success" type="submit" value="Mark as Complete">
+    {% endif %}
+</form>

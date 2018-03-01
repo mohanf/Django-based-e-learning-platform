@@ -1,0 +1,44 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    {{ course.title }}
+{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link href='{% static 'css/view_course.css' %}' rel='stylesheet'>
+    <link href='{% static 'css/creator.css' %}' rel='stylesheet'>
+{% endblock %}
+
+
+{% block body %}
+    <div class='container-fluid container-course'>
+        <div class='row list-group-item'>
+            <h1>{{ course.title }}
+            </h1>
+            <p>
+                {% for tag in course.tags.all %}
+                    <label class="tag">{{ tag.tag_content }}</label>
+                {% endfor %}
+            </p>
+            <span id="reg_button"></span>
+            <h3>About Instructor: <a href='{% url 'instructor' course.creator.id %}'>{{ course.creator.first_name }} {{ course.creator.last_name }}</a></h3>
+            <p>
+                {{ course.creator_info }}
+            </p>
+            <h3>Introduction</h3>
+            <p>
+                {{ course.description }}
+            </p>
+            <h3>Course Content List</h3>
+            <div class='col-sm-12'>
+                <ul class='list-group' id='course-content-list'>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/course_taking/get_course_content.js'%} "></script>
+    <script src="{% static 'js/course_taking/toggle_note.js'%} "></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}

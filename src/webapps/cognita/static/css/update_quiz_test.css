@@ -1,0 +1,144 @@
+.create_quiz_test_page {
+    min-width: 800px;
+}
+
+.btn-add-question {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-style: solid;
+    border-color: #d5d5d5;
+}
+
+td:last-child {
+    text-align: right;
+}
+
+thead {
+    background-color: #d5d5d5;
+}
+
+thead tr th:nth-child(5) {
+    padding-right: 10px;
+    text-align: center;
+}
+table {
+    table-layout: fixed;
+}
+.wide1 {
+    width: 40px;
+}
+.wide2 {
+    width: 120px;
+}
+.wide3 {
+    width: 85px;
+}
+.wide4 {
+    width: calc(100% - (40px + 120px + 85px + 160px));
+}
+.wide5 {
+    width: 160px;
+}
+
+th, td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+th:nth-child(2) {
+    text-align: center;
+}
+td:nth-child(2) {
+    text-align: center;
+}
+th:nth-child(3) {
+    text-align: center;
+}
+td:nth-child(3) {
+    text-align: center;
+}
+
+.quiz_description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-edit {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+.btn-edit-question {
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.btn-edit-question:active,
+.btn-edit-question:focus,
+.btn-edit-question:hover{
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.btn-delete-question {
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.btn-delete-question:active,
+.btn-delete-question:focus,
+.btn-delete-question:hover{
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.test_label{
+    font-weight: bolder;
+}
+
+.title-input {
+    width: 200px;
+    display: inline-block;
+}
+
+.full-score-label {
+    display: inline-block;
+}
+
+.full-score-input {
+    width: 200px;
+    display: inline-block;
+}
+
+.expected-hour-label {
+    display: inline-block;
+}
+
+.expected-hour-input {
+    width: 200px;
+    display: inline-block;
+}
+
+.val_error {
+    font-size: 14px;
+    color : #d43f3a;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.reorder-table{
+    background-color: white;
+}
+
+.reorder-alert {
+    margin-bottom: 10px;
+}

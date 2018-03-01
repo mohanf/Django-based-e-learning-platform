@@ -1,0 +1,269 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    Cognita
+{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link href='{% static 'css/users.css' %}' rel='stylesheet'>
+{% endblock %}
+
+{% block body %}
+    <div class='container'>
+        <div class='col-md-3 side-category'>
+            <div id='list-example' class='list-group affix'>
+                <a class='list-group-item list-group-item-action' href='#anchor1'>Computer Science</a>
+                <a class='list-group-item list-group-item-action' href='#anchor2'>Mathematics</a>
+                <a class='list-group-item list-group-item-action' href='#anchor3'>Art</a>
+                <a class='list-group-item list-group-item-action' href='#anchor4'>Business</a>
+                <a class='list-group-item list-group-item-action' href='#anchor5'>Natural Science</a>
+                <a class='list-group-item list-group-item-action' href='#anchor6'>Social Science</a>
+                <a class='list-group-item list-group-item-action' href='#anchor7'>Literature</a>
+                <a class='list-group-item list-group-item-action' href='#anchor8'>Others</a>
+            </div>
+        </div>
+        <div class='col-md-9 main-category'>
+            <div data-spy='scroll' data-target='#list-example' data-offset='0' class='scrollspy-example'>
+
+                <div class='anchor pos-anchor' id='anchor1'></div>
+                <h2 id='list-item-1'>Computer Science</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.0.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="separate">
+                    </div>
+                </div>
+
+                <div class='anchor pos-anchor' id='anchor2'></div>
+                <h2 id='list-item-2'>Mathematics</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.1.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="separate">
+                    </div>
+                </div>
+
+                <div class='anchor pos-anchor' id='anchor3'></div>
+                <h2 id='list-item-3'>Art</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.2.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="separate">
+                    </div>
+                </div>
+
+                <div class='anchor pos-anchor' id='anchor4'></div>
+                <h2 id='list-item-4'>Business</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.3.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="separate">
+                    </div>
+                </div>
+
+                <div class='anchor pos-anchor' id='anchor5'></div>
+                <h2 id='list-item-5'>Natural Science</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.4.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="separate">
+                    </div>
+                </div>
+
+                <div class='anchor pos-anchor' id='anchor6'></div>
+                <h2 id='list-item-6'>Social Science</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.5.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="separate">
+                    </div>
+                </div>
+
+                <div class='anchor pos-anchor' id='anchor7'></div>
+                <h2 id='list-item-7'>Literature</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.6.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="separate">
+                    </div>
+                </div>
+
+                <div class='anchor pos-anchor' id='anchor8'></div>
+                <h2 id='list-item-8'>Unclassified</h2>
+                <div class='content-section-homepage'>
+                    <div class='row'>
+                        {% for course in course_list.7.1%}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class='card'>
+                                    <a href='/course/{{ course.id }}'>
+                                        {% if course.course_image %}
+                                            <img class='course-img card-img-top img-responsive' src='{% url 'course_img'  course.id%}' alt='{{ course.title }}'>
+                                        {% else %}
+                                            {% load static %}
+                                            <img class='course-img card-img-top img-responsive' src='{% static 'images/course_default.png' %}' alt='{{ course.title }}'>
+                                        {% endif %}
+                                    </a>
+                                    <div class='card-body'>
+                                        <h4 class="card-title course-title"><a href='/course/{{ course.id }}'>{{ course.title }}</a></h4>
+                                        <p class="card-text course-intro">
+                                            {{ course.description }}
+                                        </p>
+                                        <a href='/course/{{ course.id }}' class="btn btn-primary">View course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

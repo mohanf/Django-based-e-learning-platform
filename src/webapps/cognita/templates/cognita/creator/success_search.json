@@ -1,0 +1,1 @@
+{"stat": "success", "html": "{{course_list_html|safe}}"}

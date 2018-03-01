@@ -1,0 +1,48 @@
+<div class="question_form" id="question_form">
+    {% if error_message %}
+        <div class="error_message">
+            <p><strong>{{ error_message }}</strong></p>
+        </div>
+    {% endif %}
+    {% if choice_forms %}
+        <div id="all_choice">
+            {% for letter, choice_form in choice_forms.items %}
+                <div id="{{ choice_form.instance.id }}" class="form-group choice">
+                    <button class="btn btn-success delete_choice">Delete</button>
+                    <label class="choice-label">Choice {{ letter }} :</label>{{ choice_form.content }}
+                    <input type="checkbox" name="choice_correct"
+                            {% if letter in all_correct_choice %} checked {% endif %}
+                           value="{{ letter }}">
+                    <label class="mark_label">Mark as correct</label>
+                </div>
+                {% if choice_form.errors %}
+                    <div class="val_error">
+                        <p><strong>{{ choice_form.content.errors }}</strong></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button class="btn btn-primary add_choice_button" type="button" id="add_choice_button"
+                onclick="add_choice()" href="javascript:void(0)">Add another choice
+        </button>
+    {% endif %}
+    {% if answer_forms %}
+        <div id="correct_answer">
+            {% for answer_form in answer_forms %}
+                <div class="form-group answer" id="{{ answer_form.instance.id }}">
+                    <button class="btn btn-success delete_answer">Delete</button>&nbsp;<label>Correct
+                    Answer: </label>{{ answer_form.answer }}
+                </div>
+                {% if answer_form.errors %}
+                    <div class="val_error">
+                        <p><strong>{{ answer_form.answer.errors }}</strong></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+        <button type="button" id="id_answer" href="javascript:void(0)"
+                    onclick="add_correct_answer()" class="btn btn-primary add_answer_button">Add another correct answer
+            </button>
+    {% endif %}
+</div>

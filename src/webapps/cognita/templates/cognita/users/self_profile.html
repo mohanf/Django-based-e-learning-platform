@@ -1,0 +1,120 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    {{ request.user.username }}
+{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link href='{% static 'css/users.css' %}' rel='stylesheet'>
+{% endblock %}
+
+{% block body %}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-3'>
+                <h2>My Info</h2>
+                <ul class='list-group'>
+                    <li class='list-group-item'>Joined {{ courses_taking|length }} courses</li>
+                    <li class='list-group-item'>Created {{ courses_created|length }} courses</li>
+                </ul>
+                <div><a href='{% url 'home' %}' class="btn btn-block btn-lg btn-success">Find Popular Courses</a></div><br>
+                <div><a href='{% url 'add_course' %}' class="btn btn-block btn-lg btn-primary">Create New Course</a></div>
+
+            </div>
+            <div class='col-sm-9'>
+                <div >
+                    <h2>Courses as Student</h2>
+                        {% for class in courses_taking_grade %}
+                            <div class='profile_course list-group-item col-xs-4'>
+                                <div class="card">
+                                    {% load static %}
+                                    <a href='/course/{{ class.0.id }}'>
+                                        {% if class.0.course_image %}
+                                            <img class="course-img card-img-top img-responsive" src="{% url 'course_img'  class.0.id%}" alt="{{ class.0.title }}">
+                                        {% else %}
+                                            {% load static %}
+                                            <img class="course-img card-img-top img-responsive" src="{% static 'images/course_default.png' %}" alt="{{ class.0.title }}">
+                                        {% endif %}
+                                    </a>
+                                    <div class="card-block">
+                                        <h4 class="card-title course-title">
+                                            <a href='/course/{{ class.0.id }}'>{{ class.0.title }}</a>
+                                        </h4>
+                                        <p class="card-text">
+                                            Progress Status:
+                                            {% if class.1.1 == True %}
+                                                <b>Completed</b>
+                                            {% else %}
+                                                <b>Active</b>
+                                            {% endif %}
+                                            <br>
+                                            Average grade: <b>{{ class.1.0 }}%</b>
+                                        </p>
+                                        <a href='/course/{{ class.0.id }}' class="btn btn-primary">Continue course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+
+            <div class='col-sm-offset-3 col-sm-9'>
+                <div>
+                    <h2>Courses as Instructor</h2>
+                        {% for class in courses_created %}
+                            {% if class.published %}
+                                <div class='profile_course list-group-item col-xs-4'>
+                                    <div class="card">
+                                        <a href='/course/{{ class.id }}'>
+                                            {% if class.course_image %}
+                                                <img class="course-img card-img-top img-responsive" src="{% url 'course_img'  class.id%}" alt="{{ class.title }}">
+                                            {% else %}
+                                                {% load static %}
+                                                <img class="course-img card-img-top img-responsive" src="{% static 'images/course_default.png' %}" alt="{{ class.title }}">
+                                            {% endif %}
+                                        </a>
+
+                                        <div class="card-block">
+                                            <h4 class="card-title course-title">
+                                                <a href='/course/{{ class.id }}'>{{ class.title }}</a>
+                                            </h4>
+                                            <p class="card-text">
+                                                Status: <b>Published</b>
+                                            </p>
+                                            <a href='/course/{{ class.id }}' class="btn btn-primary">View course</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% for class in courses_created %}
+                            {% if not class.published %}
+                                <div class='profile_course list-group-item col-xs-4'>
+                                    <div class="card">
+                                        <a href='/creating_course/{{ class.id }}'>
+                                            {% if class.course_image %}
+                                                <img class="course-img card-img-top img-responsive" src="{% url 'course_img'  class.id%}" alt="{{ class.title }}">
+                                            {% else %}
+                                                {% load static %}
+                                                <img class="course-img card-img-top img-responsive" src="{% static 'images/course_default.png' %}" alt="{{ class.title }}">
+                                            {% endif %}
+                                        </a>
+
+                                        <div class="card-block">
+                                            <h4 class="card-title course-title">
+                                                <a href='/creating_course/{{ class.id }}'>{{ class.title }}</a>
+                                            </h4>
+                                            <p class="card-text">
+                                                Status: <b>In development</b>
+                                            </p>
+                                            <a href="/creating_course/{{ class.id }}" class="btn btn-primary">Edit course</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

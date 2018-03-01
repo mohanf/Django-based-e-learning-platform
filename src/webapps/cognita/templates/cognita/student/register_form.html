@@ -1,0 +1,11 @@
+<form  method='post'>
+    {% for field in register_form %}
+        {{ field }}
+    {% endfor %}
+    {% if form_action == 'Drop' %}
+        <input id='take-or-drop' class="btn btn-default" type="submit" value="{{ form_action }}">
+    {% else %}
+        <input id='take-or-drop' class="btn btn-success" type="submit" value="{{ form_action }}">
+        <span class="reg-note"> click 'Register' to see course content</span>
+    {% endif %}
+</form>

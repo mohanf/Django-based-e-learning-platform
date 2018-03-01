@@ -1,0 +1,47 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    Create
+    {% if request.resolver_match.url_name == 'create_quiz' %}Quiz{% endif %}
+    {% if request.resolver_match.url_name == 'create_test' %}Test{% endif %}
+{% endblock %}
+{% block head %}
+    {% load static %}
+    <link href="{% static 'css/create_quiz_test.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="well create_quiz_test_page col-md-8 col-md-offset-2">
+            {% if request.resolver_match.url_name == 'create_quiz' %}
+                <h2>Create Quiz</h2>
+                <h5>Course: {{ course }}</h5>
+                <h5>Lecture: {{ lecture }}</h5>
+            {% endif %}
+            {% if request.resolver_match.url_name == 'create_test' %}
+                <h2>Create Test</h2>
+                <h5>Course: {{ course }}</h5>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            {{ field.label_tag }}<br>
+                            {{ field }}
+                        </div>
+                        {% if field.errors %}
+                            <div class="val_error">
+                                <p><strong>{{ field.errors }}</strong></p>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button class="btn btn-save-quiz-test"> Save</button>
+                <a href="{% url 'creating_course' course.id %}">
+                    <button type="button" class="btn btn-save-quiz-test">Back to course
+                    </button>
+                </a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

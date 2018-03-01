@@ -1,0 +1,105 @@
+{% extends 'cognita/base.html' %}
+{% block title %}
+    Grade
+{% endblock %}
+{% block head %}
+    {% load static %}
+    <link href="{% static 'css/auto_grade.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="container well auto_grade_page">
+        <h3>{{ title }}{% if request.resolver_match.url_name == 'auto_grade_quiz' %}Quiz{% endif %}
+            {% if request.resolver_match.url_name == 'auto_grade_test' %}Test{% endif %} Grade</h3>
+        <div class="user_grade">
+            <p>You grade for this quiz is <strong>{{ user_grade }}/{{ full_score }}</strong></p>
+            <p>The correct result is shown below.</p>
+            {% for question in questions %}
+                {% if question.correct %}
+                    <div class="panel panel-success">
+                {% else %}
+                    <div class="panel panel-danger">
+                {% endif %}
+            <div class="panel-heading">
+                <h3 id="question_{{ question.question.index }}" class="question_title panel-title">
+                    Quesiton {{ question.question.index }} : <span>Your answer is
+                    {% if question.correct %}right!{% else %}wrong!{% endif %}</span></h3>
+            </div>
+            <div class="panel-body">
+                <div class="question-description">
+                    {{ question.question.description }}
+                </div>
+                <div class="user_answer">
+                    <strong>Your answer : </strong>
+                    {% if question.type == 'MC' %}
+                        {% for user_choice in question.user_choices %}
+                            {% if question.user_choices.count > 1 %}<br>{% endif %}{{ user_choice.content }}
+                        {% endfor %}
+                    {% else %}
+                        {{ question.user_answers }}
+                    {% endif %}
+                </div>
+                {% if not question.correct %}
+                    <div class="correct_answer">
+                        <strong>Correct answer : </strong>
+                        {% if question.type == 'MC' %}
+                            {% for correct_choice in question.correct_choices %}
+                                {% if question.correct_choices.count > 1 %}<br>{% endif %}{{ correct_choice.content }}
+                            {% endfor %}
+                        {% else %}
+                            {% for correct_answer in question.correct_answers %}
+                                {% if question.correct_answers.count > 1 %}<br>{% endif %}{{ correct_answer.answer }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            </div>
+            {% endfor %}
+            </div>
+            <div class="button-group">
+                <button class="btn btn-danger back-retake-button" data-toggle="modal" data-target="#myModal"> Take
+                    {% if request.resolver_match.url_name == 'auto_grade_quiz' %}Quiz{% endif %}
+                    {% if request.resolver_match.url_name == 'auto_grade_test' %}Test{% endif %} Again
+                </button>
+                <a href="{% url 'course_page' course.id %}">
+                    <button class="btn btn-primary back-retake-button"> Back to Course</button>
+                </a>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Retake confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are your sure to take the {% if request.resolver_match.url_name == 'auto_grade_quiz' %}
+                                quiz{% endif %}
+                                {% if request.resolver_match.url_name == 'auto_grade_test' %}test{% endif %} again?</p>
+                            <h5>Mention: Your previous answers will be deleted.</h5>
+                        </div>
+                        <div class="modal-footer">
+                            {% if request.resolver_match.url_name == 'auto_grade_quiz' %}
+                                <a href="{% url 'take_quiz' request.resolver_match.kwargs.quiz_id %}">{% endif %}
+                            {% if request.resolver_match.url_name == 'auto_grade_test' %}
+                                <a href="{% url 'take_test' request.resolver_match.kwargs.test_id %}">{% endif %}
+                            <button class="btn btn-danger back-retake-button" data-toggle="modal"
+                                    data-target="#myModal"> Take
+                                {% if request.resolver_match.url_name == 'auto_grade_quiz' %}Quiz{% endif %}
+                                {% if request.resolver_match.url_name == 'auto_grade_test' %}Test{% endif %} Again
+                            </button>
+                            </a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

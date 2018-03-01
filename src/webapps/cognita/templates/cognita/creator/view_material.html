@@ -1,0 +1,78 @@
+{% extends "cognita/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    View Material
+{% endblock title %}
+
+{% block body %}
+    <input id="mode" type="hidden" value="{{ mode }}">
+    <div class="container base">
+        <div class="col-md-8 col-md-offset-2">
+    <h3>
+        Here is your reading
+        <span class="two-button">
+                <a class="btn btn-primary"
+                   href="{% url 'creating_course' reading.lecture.course.id %}">back to course</a>
+            </span>
+    </h3>
+    <ul class="nav nav-pills">
+        <li><a href="#View" id="view_button" data-toggle="tab">View</a></li>
+        <li><a href="#Modify" id="modify_button" data-toggle="tab">Modify</a></li>
+
+    </ul>
+    <div class="tab-content">
+                <div id="View" class="tab-pane fade" name="{{ reading.id }}">
+                    <div class="view-field filter">
+                        <h3>Title</h3> {{ reading.title }}
+                    </div>
+                    <div class="view-field filter">
+                        <h3>Description</h3>{{ reading.description }}
+                    </div>
+                    <div class="view-field-material">
+                        <h3>Your work</h3>
+                        <div id="material" class="base material-show">
+                            {{ reading.material|safe }}
+                        </div>
+                    </div>
+                </div>
+                <div id="Modify" class="tab-pane fade">
+                    <form enctype="multipart/form-data" action="{% url 'modify_material' reading.id %}" method="post">
+                        {% csrf_token %}
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+
+                        {% for field in form %}
+                            <div class="form-group form-input">
+                                {{ field.label_tag }}
+                                {% if field.label == 'Material'%}
+                                <span class="save-info" id="save_info"></span>
+                                {% endif %}
+                                <br>
+                                {{ field }}
+                            </div>
+                            {% for error in field.errors %}
+                                <p class="error_remind">{{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                        {{ form.media }}
+                        <br>
+                        <div class="row save-button-small">
+
+                            <input type="submit" class="btn btn-default material-save" value="Save">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/creator.css' %}">
+    <script src="{% static 'js/creator/view_modify_material.js' %}"></script>
+
+{% endblock head %}

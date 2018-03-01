@@ -1,0 +1,75 @@
+{% extends "cognita/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    View Video
+{% endblock title %}
+
+{% block body %}
+    <input id="mode" type="hidden" value="{{ mode }}">
+    <div class="container base">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>
+                Here is your video
+                <span class="two-button">
+                <a class="btn btn-primary" href="{% url 'creating_course' video.lecture.course.id %}">back to course</a>
+            </span>
+            </h3>
+            <ul class="nav nav-pills">
+                <li><a href="#View" id="view_button" data-toggle="tab">View</a></li>
+                <li><a href="#Modify" id="modify_button" data-toggle="tab">Modify</a></li>
+
+            </ul>
+            <div class="tab-content">
+                <div id="View" class="tab-pane fade">
+                    <div class="view-field filter">
+                        <h3>Title</h3>{{ video.title }}
+                    </div>
+                    <div class="view-field filter">
+                        <h3>Description</h3>{{ video.description }}
+                    </div>
+                    <div class="view-field">
+
+                        <iframe width=100% height="500px" src={{ video.link }} frameborder="0" allowfullscreen></iframe>
+
+                    </div>
+                </div>
+                <div id="Modify" class="tab-pane fade">
+                    <form action="{% url 'modify_video' video.id %}" method="post">
+                        {% csrf_token %}
+                    <div class="error_remind">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+
+
+                        {% for field in form %}
+                            <div class="form-group">
+                                {{ field.label_tag }}<br>
+                                {{ field }}
+                            </div>
+                            {% for error in field.errors %}
+                                <p class="error_remind">{{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                        <br>
+                        <div class="row save-button-small">
+
+
+                            <input type="submit" class="btn btn-default" value="Save">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/creator.css' %}">
+    <script src="{% static 'js/creator/view_modify_reading.js' %}"></script>
+
+{% endblock head %}
